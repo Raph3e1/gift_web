@@ -44,6 +44,7 @@ export default function HomePage() {
             fill
             className="object-cover scale-110 hero-parallax"
             priority
+            unoptimized
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
