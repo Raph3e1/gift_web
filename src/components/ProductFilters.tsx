@@ -1,0 +1,291 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import ProductCard from "@/components/ProductCard";
+import type { Product } from "@/lib/data";
+
+const CATEGORIES = ["Hộp Quà Gỗ Sơn Mài", "Giỏ Quà Mây Tre Đan", "Bộ Trà & Rượu"];
+const RECIPIENTS = [
+  "Gia Đình & Người Thân",
+  "Bạn Bè & Đồng Nghiệp",
+  "Đối Tác Kinh Doanh",
+];
+const PRICE_RANGES = [
+  { label: "Dưới 500.000₫", min: 0, max: 500000 },
+  { label: "500.000₫ - 1.500.000₫", min: 500000, max: 1500000 },
+  { label: "Trên 1.500.000₫", min: 1500000, max: Infinity },
+];
+type SortOption = "popular" | "price-asc" | "price-desc" | "newest";
+
+interface Props {
+  products: Product[];
+}
+
+export default function ProductFilters({ products }: Props) {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedRecipients, setSelectedRecipients] = useState<string[]>([]);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null);
+  const [sortBy, setSortBy] = useState<SortOption>("popular");
+  const [animKey, setAnimKey] = useState(0);
+
+  const toggleCategory = (cat: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+    setAnimKey((k) => k + 1);
+  };
+
+  const toggleRecipient = (rec: string) => {
+    setSelectedRecipients((prev) =>
+      prev.includes(rec) ? prev.filter((r) => r !== rec) : [...prev, rec]
+    );
+    setAnimKey((k) => k + 1);
+  };
+
+  const togglePriceRange = (idx: number) => {
+    setSelectedPriceRange((prev) => (prev === idx ? null : idx));
+    setAnimKey((k) => k + 1);
+  };
+
+  const filteredProducts = useMemo(() => {
+    let result = [...products];
+
+    // Filter by category
+    if (selectedCategories.length > 0) {
+      result = result.filter(
+        (p) => p.category && selectedCategories.includes(p.category)
+      );
+    }
+
+    // Filter by recipient
+    if (selectedRecipients.length > 0) {
+      result = result.filter(
+        (p) =>
+          p.recipient &&
+          p.recipient.some((r) => selectedRecipients.includes(r))
+      );
+    }
+
+    // Filter by price range
+    if (selectedPriceRange !== null) {
+      const range = PRICE_RANGES[selectedPriceRange];
+      result = result.filter(
+        (p) => p.priceNumber >= range.min && p.priceNumber < range.max
+      );
+    }
+
+    // Sort
+    switch (sortBy) {
+      case "price-asc":
+        result.sort((a, b) => a.priceNumber - b.priceNumber);
+        break;
+      case "price-desc":
+        result.sort((a, b) => b.priceNumber - a.priceNumber);
+        break;
+      case "newest":
+        result.reverse();
+        break;
+      default:
+        break;
+    }
+
+    return result;
+  }, [products, selectedCategories, selectedRecipients, selectedPriceRange, sortBy]);
+
+  const activeFilterCount =
+    selectedCategories.length +
+    selectedRecipients.length +
+    (selectedPriceRange !== null ? 1 : 0);
+
+  const clearAll = () => {
+    setSelectedCategories([]);
+    setSelectedRecipients([]);
+    setSelectedPriceRange(null);
+    setSortBy("popular");
+  };
+
+  return (
+    <div className="flex flex-col lg:flex-row gap-16">
+      {/* Sidebar Filters */}
+      <aside className="w-full lg:w-64 flex-shrink-0 space-y-12">
+        {/* Gift Type */}
+        <section>
+          <h3 className="font-headline text-xl mb-6 flex items-center gap-3">
+            <span className="w-1 h-5 bg-primary rounded-full"></span>
+            Loại Quà Tặng
+          </h3>
+          <div className="space-y-4">
+            {CATEGORIES.map((label) => (
+              <label
+                key={label}
+                className="flex items-center group cursor-pointer"
+              >
+                <input
+                  className="w-4 h-4 border-stone-300 text-primary focus:ring-primary rounded-sm bg-transparent cursor-pointer"
+                  type="checkbox"
+                  checked={selectedCategories.includes(label)}
+                  onChange={() => toggleCategory(label)}
+                />
+                <span
+                  className={`ml-3 font-body transition-colors ${
+                    selectedCategories.includes(label)
+                      ? "text-primary font-semibold"
+                      : "text-stone-600 group-hover:text-primary"
+                  }`}
+                >
+                  {label}
+                </span>
+              </label>
+            ))}
+          </div>
+        </section>
+
+        {/* Recipient */}
+        <section>
+          <h3 className="font-headline text-xl mb-6 flex items-center gap-3">
+            <span className="w-1 h-5 bg-primary rounded-full"></span>
+            Đối Tượng
+          </h3>
+          <div className="space-y-4">
+            {RECIPIENTS.map((label) => (
+              <label
+                key={label}
+                className="flex items-center group cursor-pointer"
+              >
+                <input
+                  className="w-4 h-4 border-stone-300 text-primary focus:ring-primary rounded-sm bg-transparent cursor-pointer"
+                  type="checkbox"
+                  checked={selectedRecipients.includes(label)}
+                  onChange={() => toggleRecipient(label)}
+                />
+                <span
+                  className={`ml-3 font-body transition-colors ${
+                    selectedRecipients.includes(label)
+                      ? "text-primary font-semibold"
+                      : "text-stone-600 group-hover:text-primary"
+                  }`}
+                >
+                  {label}
+                </span>
+              </label>
+            ))}
+          </div>
+        </section>
+
+        {/* Price Range */}
+        <section>
+          <h3 className="font-headline text-xl mb-6 flex items-center gap-3">
+            <span className="w-1 h-5 bg-primary rounded-full"></span>
+            Khoảng Giá
+          </h3>
+          <div className="space-y-4">
+            {PRICE_RANGES.map((range, idx) => (
+              <label
+                key={range.label}
+                className="flex items-center group cursor-pointer"
+              >
+                <input
+                  className="w-4 h-4 border-stone-300 text-primary focus:ring-primary bg-transparent cursor-pointer"
+                  name="price"
+                  type="radio"
+                  checked={selectedPriceRange === idx}
+                  onChange={() => togglePriceRange(idx)}
+                />
+                <span
+                  className={`ml-3 font-body transition-colors ${
+                    selectedPriceRange === idx
+                      ? "text-primary font-semibold"
+                      : "text-stone-600 group-hover:text-primary"
+                  }`}
+                >
+                  {range.label}
+                </span>
+              </label>
+            ))}
+          </div>
+        </section>
+      </aside>
+
+      {/* Main Listing */}
+      <section className="flex-1">
+        {/* Sorting & View Info */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-6 border-b border-stone-200 pb-6">
+          <div className="flex items-center gap-4 flex-wrap">
+            <p className="font-body text-stone-500">
+              Hiển thị{" "}
+              <span className="font-bold text-on-surface">
+                {filteredProducts.length}
+              </span>{" "}
+              {filteredProducts.length < products.length && (
+                <span className="text-stone-400">/ {products.length} </span>
+              )}
+              sản phẩm tuyệt tác
+            </p>
+            <button
+              onClick={clearAll}
+              className={`flex items-center gap-1.5 text-xs text-primary font-semibold hover:underline transition-all cursor-pointer border border-primary/20 rounded-full px-3 py-1 ${
+                activeFilterCount > 0
+                  ? "opacity-100"
+                  : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <span className="material-symbols-outlined text-sm">filter_alt_off</span>
+              Xóa bộ lọc ({activeFilterCount})
+            </button>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="font-label text-sm uppercase tracking-[0.1em] text-stone-400">
+              Sắp xếp:
+            </span>
+            <select
+              className="bg-transparent border-none py-1 pr-10 font-body focus:ring-0 text-on-surface font-semibold cursor-pointer"
+              value={sortBy}
+              onChange={(e) => { setSortBy(e.target.value as SortOption); setAnimKey((k) => k + 1); }}
+            >
+              <option value="popular">Phổ Biến Nhất</option>
+              <option value="price-asc">Giá: Thấp đến Cao</option>
+              <option value="price-desc">Giá: Cao đến Thấp</option>
+              <option value="newest">Mới Nhất</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Product Grid */}
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-20">
+            {filteredProducts.map((product, idx) => (
+              <div
+                key={`${animKey}-${product.slug}`}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <ProductCard
+                  product={product}
+                  variant="listing"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-32 animate-fade-in">
+            <span className="material-symbols-outlined text-6xl text-stone-300 mb-6 block">
+              search_off
+            </span>
+            <h3 className="font-headline text-2xl text-stone-500 mb-3">
+              Không tìm thấy sản phẩm
+            </h3>
+            <p className="text-stone-400 mb-8 max-w-md mx-auto">
+              Không có sản phẩm nào phù hợp với bộ lọc hiện tại. Hãy thử điều chỉnh tiêu chí tìm kiếm.
+            </p>
+            <button
+              onClick={clearAll}
+              className="bg-primary text-white px-8 py-3 font-bold text-sm tracking-widest uppercase hover:bg-primary-container transition-colors cursor-pointer"
+            >
+              Xóa bộ lọc
+            </button>
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}
