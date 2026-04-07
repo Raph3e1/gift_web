@@ -33,7 +33,7 @@ export default function HomePage() {
   const rootRef = useScrollReveal();
 
   return (
-    <main ref={rootRef}>
+    <main ref={rootRef} className="tet-watermark">
       {/* ─── Hero ─── */}
       <section className="relative h-[750px] flex items-center mt-16 overflow-hidden">
         {/* Parallax BG */}
@@ -148,7 +148,14 @@ export default function HomePage() {
       </section>
 
       {/* ─── Bestsellers ─── */}
-      <section className="py-28 max-w-7xl mx-auto px-8">
+      <section className="py-28 max-w-7xl mx-auto px-8 relative">
+        {/* Decorative background element */}
+        <div className="absolute top-1/4 left-0 -translate-x-1/2 opacity-[0.03] pointer-events-none z-[-1]">
+          <span className="material-symbols-outlined text-[400px]">filter_vintage</span>
+        </div>
+        <div className="absolute bottom-1/4 right-0 translate-x-1/3 opacity-[0.03] pointer-events-none z-[-1]">
+          <span className="material-symbols-outlined text-[500px]">card_giftcard</span>
+        </div>
         <div className="flex justify-between items-end mb-14" data-reveal>
           <div className="reveal-left">
             <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold mb-3">
@@ -183,10 +190,13 @@ export default function HomePage() {
       </section>
 
       {/* ─── Categories Showcase ─── */}
-      <section className="py-28 bg-stone-50 relative overflow-hidden">
+      <section className="py-28 bg-stone-50/50 relative overflow-hidden border-y border-stone-200/50">
         {/* Decorative */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/3 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
+        
+        {/* Subtle dot pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.4] pointer-events-none seasonal-motif"></div>
 
         <div className="max-w-7xl mx-auto px-8 relative z-10">
           <div className="text-center mb-20" data-reveal>

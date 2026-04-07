@@ -75,8 +75,18 @@
 /* === Base === */
 body {
   font-family: var(--font-body);
-  background-color: var(--color-background);
+  background-color: #faf8f4;
   color: var(--color-on-surface);
+}
+
+/* Warm textured page background */
+main {
+  background:
+    radial-gradient(ellipse 600px 400px at 10% 20%, rgba(163, 0, 20, 0.03), transparent),
+    radial-gradient(ellipse 500px 500px at 90% 60%, rgba(254, 214, 91, 0.04), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 80%, rgba(163, 0, 20, 0.02), transparent),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='0.8' fill='%23c92127' fill-opacity='0.04'/%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
 
 ::selection {
