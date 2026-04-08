@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/lib/cart-context";
+import { Analytics } from "@vercel/analytics/next";
 
 const notoSerif = Noto_Serif({
   subsets: ["latin", "vietnamese"],
@@ -52,6 +53,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
