@@ -5,7 +5,6 @@ import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import { bestsellers } from "@/lib/data";
 import { useEffect, useRef } from "react";
-import { Analytics } from "@vercel/analytics/next"
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
