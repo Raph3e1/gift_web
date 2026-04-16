@@ -6,10 +6,14 @@ import type { Product } from "@/lib/data";
 
 const CATEGORIES = ["Hộp Quà Gỗ Sơn Mài", "Giỏ Quà Mây Tre Đan", "Bộ Trà & Rượu"];
 const RECIPIENTS = [
-  "Gia Đình & Người Thân",
-  "Bạn Bè & Đồng Nghiệp",
+  "Người Yêu",
+  "Cha Mẹ",
   "Đối Tác Kinh Doanh",
+  "Bạn Bè & Đồng Nghiệp",
+  "Gia Đình & Người Thân",
 ];
+
+
 const PRICE_RANGES = [
   { label: "Dưới 500.000₫", min: 0, max: 500000 },
   { label: "500.000₫ - 1.500.000₫", min: 500000, max: 1500000 },

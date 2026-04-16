@@ -1,118 +1,156 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-auto bg-stone-100">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 max-w-7xl mx-auto">
-        {/* Brand */}
-        <div className="col-span-1">
-          <h4 className="text-xl font-serif font-bold text-primary mb-6">
-            GIFT GLAMOROUS
-          </h4>
-          <p className="text-stone-500 text-sm leading-relaxed mb-6">
-            Lưu giữ nét đẹp truyền thống trong từng món quà hiện đại. Mang may
-            mắn và tài lộc đến mọi nhà trong dịp xuân về.
-          </p>
-          <div className="flex gap-4">
-            <span className="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">
-              public
-            </span>
-            <span className="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">
-              photo_camera
-            </span>
+    <footer className="w-full mt-auto">
+      {/* Main Footer - Split Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Left - Lifestyle Image */}
+        <div className="relative h-[400px] lg:h-auto overflow-hidden img-zoom">
+          <Image
+            src="/images/cat-hop-qua.jpg"
+            alt="Gift Glamorous Lifestyle"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Right - Newsletter + Links */}
+        <div className="bg-[#f5f3ed] px-8 lg:px-16 py-16">
+          {/* Newsletter */}
+          <div className="mb-12">
+            <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-stone-500 mb-4">
+              Đăng ký nhận tin
+            </h4>
+            <div className="flex border-b border-stone-300">
+              <input
+                className="flex-1 bg-transparent py-3 text-sm outline-none placeholder:text-stone-400"
+                placeholder="Nhập địa chỉ email..."
+                type="email"
+              />
+              <button className="px-4 text-stone-500 hover:text-[#2d4a3e] transition-colors">
+                <span className="material-symbols-outlined text-xl">arrow_forward</span>
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Products */}
-        <div>
-          <h5 className="text-xs font-bold text-primary mb-6 uppercase tracking-[0.2em]">
-            Sản Phẩm
-          </h5>
-          <ul className="space-y-4 text-sm text-stone-500">
-            <li>
-              <Link
-                href="/san-pham"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Hộp Quà Cao Cấp
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/san-pham"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Giỏ Quà Tết
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/san-pham"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Trà & Đặc Sản
-              </Link>
-            </li>
-          </ul>
-        </div>
+          {/* Links Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Column 1 */}
+            <div>
+              <h5 className="text-xs font-bold text-stone-500 mb-5 uppercase tracking-[0.2em]">
+                Đặt hàng & Hỗ trợ
+              </h5>
+              <ul className="space-y-3 text-sm text-stone-500">
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Hệ thống cửa hàng
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Kiểm tra đơn hàng
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Chính sách giao hàng
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Đổi trả & Hoàn tiền
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-        {/* Support */}
-        <div>
-          <h5 className="text-xs font-bold text-primary mb-6 uppercase tracking-[0.2em]">
-            Hỗ Trợ
-          </h5>
-          <ul className="space-y-4 text-sm text-stone-500">
-            <li>
-              <Link
-                href="#"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Hệ thống cửa hàng
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Chính sách vận chuyển
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="hover:text-secondary transition-colors duration-200"
-              >
-                Điều khoản dịch vụ
-              </Link>
-            </li>
-          </ul>
-        </div>
+            {/* Column 2 */}
+            <div>
+              <h5 className="text-xs font-bold text-stone-500 mb-5 uppercase tracking-[0.2em]">
+                Sản phẩm
+              </h5>
+              <ul className="space-y-3 text-sm text-stone-500">
+                <li>
+                  <Link href="/san-pham" className="hover:text-[#2d4a3e] transition-colors">
+                    Hộp Quà Cao Cấp
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/san-pham" className="hover:text-[#2d4a3e] transition-colors">
+                    Giỏ Quà Mây Tre
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/san-pham" className="hover:text-[#2d4a3e] transition-colors">
+                    Trà & Đặc Sản
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collection/doanh-nghiep" className="hover:text-[#2d4a3e] transition-colors">
+                    Quà Doanh Nghiệp
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-        {/* Contact */}
-        <div>
-          <h5 className="text-xs font-bold text-primary mb-6 uppercase tracking-[0.2em]">
-            Liên Hệ
-          </h5>
-          <div className="space-y-4 text-sm text-stone-500">
-            <p>123 Đường Xuân, Quận 1, TP. HCM</p>
-            <p>Hotline: 1900 8888</p>
-            <p>Email: contact@giftglamorous.vn</p>
+            {/* Column 3 */}
+            <div>
+              <h5 className="text-xs font-bold text-stone-500 mb-5 uppercase tracking-[0.2em]">
+                Về chúng tôi
+              </h5>
+              <ul className="space-y-3 text-sm text-stone-500">
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Câu chuyện thương hiệu
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Nguyên liệu
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Chứng nhận
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4 */}
+            <div>
+              <h5 className="text-xs font-bold text-stone-500 mb-5 uppercase tracking-[0.2em]">
+                Mạng xã hội
+              </h5>
+              <ul className="space-y-3 text-sm text-stone-500">
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    Instagram
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-[#2d4a3e] transition-colors">
+                    TikTok
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto px-12 py-8 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-400">
-        <p>© 2024 Gift Glamorous. All rights reserved.</p>
-        <div className="flex gap-8">
-          <Link href="#" className="hover:text-primary transition-colors">
-            Chính sách bảo mật
-          </Link>
-          <Link href="#" className="hover:text-primary transition-colors">
-            Liên hệ
-          </Link>
-        </div>
+      <div className="bg-[#1a1c1a] text-white/40 text-center py-6">
+        <p className="text-[10px] uppercase tracking-[0.4em]">
+          &copy; 2024 Gift Glamorous. All rights reserved. &mdash; The Art of Vietnamese Gifting
+        </p>
       </div>
     </footer>
   );

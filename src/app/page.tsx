@@ -22,7 +22,7 @@ function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
     targets.forEach((t) => observer.observe(t));
     return () => observer.disconnect();
@@ -34,385 +34,266 @@ export default function HomePage() {
   const rootRef = useScrollReveal();
 
   return (
-    <main ref={rootRef} className="tet-watermark">
-      {/* ─── Hero ─── */}
-      <section className="relative h-[750px] flex items-center mt-16 overflow-hidden">
-        {/* Parallax BG */}
-        <div className="absolute inset-0">
+    <main ref={rootRef} className="bg-[#FAF8F3] text-stone-800">
+      <Analytics />
+
+      {/* ─── Hero Section (Cocoon 50/50 Split) ─── */}
+      <section className="hero-split">
+        {/* Left - Image */}
+        <div className="relative min-h-[400px] lg:min-h-0 overflow-hidden">
           <Image
             src="/images/hero-bg.png"
-            alt="Hero background"
+            alt="Gift Glamorous Collection"
             fill
-            className="object-cover scale-110 hero-parallax"
+            className="object-cover"
             priority
-            unoptimized
-            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
         </div>
 
-        {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="hero-particle hero-particle-1"></div>
-          <div className="hero-particle hero-particle-2"></div>
-          <div className="hero-particle hero-particle-3"></div>
-          <div className="hero-particle hero-particle-4"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-8 w-full">
-          <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.4em] font-semibold text-secondary mb-6 hero-stagger hero-stagger-1">
-              ✦ Chào Xuân Ất Tỵ 2025
-            </p>
-            <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] mb-8 text-white hero-stagger hero-stagger-2">
-              Gói Trọn <br />
-              Nghĩa Tình,{" "}
-              <span className="italic bg-gradient-to-r from-secondary via-yellow-200 to-secondary bg-clip-text text-transparent">
-                Khai Xuân Như Ý
-              </span>
-            </h1>
-            <p className="text-lg text-white/80 mb-12 font-light leading-relaxed max-w-md hero-stagger hero-stagger-3">
-              Khám phá bộ sưu tập quà Tết Heirloom — sự kết tinh giữa nghệ
-              thuật thủ công truyền thống và phong cách đương đại thượng lưu.
-            </p>
-            <div className="flex gap-4 hero-stagger hero-stagger-4">
-              <Link
-                href="/san-pham"
-                className="group bg-primary hover:bg-primary-container text-white px-10 py-4 rounded-sm font-bold transition-all shadow-2xl shadow-primary/30 flex items-center gap-3 active:scale-95"
-              >
-                Khám Phá Ngay
-                <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">
-                  arrow_forward
-                </span>
-              </Link>
-              <button className="border border-white/40 text-white px-10 py-4 rounded-sm font-bold hover:bg-white/10 hover:border-white/70 transition-all cursor-pointer backdrop-blur-sm">
-                Xem Catalog
-              </button>
-            </div>
+        {/* Right - Mustard Content */}
+        <div className="hero-mustard">
+          <p className="text-[11px] uppercase tracking-[0.35em] font-semibold text-[#6b5c2e] mb-6 hero-stagger hero-stagger-1">
+            Bộ sưu tập quà tặng cao cấp 2024
+          </p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.05] mb-6 text-stone-800 hero-stagger hero-stagger-2">
+            Nghệ thuật <br />
+            <span className="italic font-light">Quà Tặng</span> <br />
+            Bản Địa.
+          </h1>
+          <p className="text-stone-600 text-base font-light leading-relaxed mb-10 max-w-md hero-stagger hero-stagger-3">
+            Chắt lọc những nguyên liệu tinh túy nhất từ thiên nhiên Việt Nam,
+            kết hợp nghệ thuật thủ công đương đại để tạo nên bộ quà tặng đẳng cấp.
+          </p>
+          <div className="hero-stagger hero-stagger-4">
+            <Link href="/san-pham" className="cocoon-btn">
+              XEM NGAY
+              <span className="material-symbols-outlined text-lg">arrow_forward</span>
+            </Link>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce-slow">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Cuộn xuống</span>
-          <span className="material-symbols-outlined text-lg">expand_more</span>
+          {/* Slider Dots */}
+          <div className="flex gap-2 mt-10 hero-stagger hero-stagger-5">
+            <span className="w-2.5 h-2.5 rounded-full bg-white"></span>
+            <span className="w-2 h-2 rounded-full bg-white/40"></span>
+            <span className="w-2 h-2 rounded-full bg-white/40"></span>
+            <span className="w-2 h-2 rounded-full bg-white/40"></span>
+            <span className="w-2 h-2 rounded-full bg-white/40"></span>
+          </div>
         </div>
       </section>
 
-      {/* ─── USP Bento Cards ─── */}
-      <section className="max-w-7xl mx-auto px-8 -mt-20 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              icon: "local_shipping",
-              title: "Giao Hàng Hỏa Tốc",
-              desc: "Đảm bảo quà đến tay người nhận đúng hẹn, giữ trọn vẹn hương vị và sắc xuân.",
-              delay: "0ms",
-            },
-            {
-              icon: "workspace_premium",
-              title: "Chất Lượng Thượng Hạng",
-              desc: "Nguyên liệu chọn lọc từ những nghệ nhân và thương hiệu danh tiếng nhất.",
-              delay: "120ms",
-            },
-            {
-              icon: "redeem",
-              title: "Thiết Kế Độc Bản",
-              desc: "Bao bì tinh xảo với các họa tiết truyền thống được cách tân đầy nghệ thuật.",
-              delay: "240ms",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              data-reveal
-              style={{ transitionDelay: item.delay }}
-              className="reveal-up bg-white p-10 shadow-xl shadow-stone-200/50 rounded-xl flex flex-col items-center text-center group border border-stone-100 hover:border-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
-            >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                <span
-                  className="material-symbols-outlined text-3xl"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  {item.icon}
-                </span>
-              </div>
-              <h3 className="font-serif text-xl font-bold mb-3">
-                {item.title}
-              </h3>
-              <p className="text-stone-500 text-sm leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ─── Bestsellers ─── */}
-      <section className="py-28 max-w-7xl mx-auto px-8 relative">
-        {/* Decorative background element */}
-        <div className="absolute top-1/4 left-0 -translate-x-1/2 opacity-[0.03] pointer-events-none z-[-1]">
-          <span className="material-symbols-outlined text-[400px]">filter_vintage</span>
-        </div>
-        <div className="absolute bottom-1/4 right-0 translate-x-1/3 opacity-[0.03] pointer-events-none z-[-1]">
-          <span className="material-symbols-outlined text-[500px]">card_giftcard</span>
-        </div>
-        <div className="flex justify-between items-end mb-14" data-reveal>
-          <div className="reveal-left">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold mb-3">
-              ✦ Được yêu thích nhất
-            </p>
-            <h2 className="font-serif text-4xl text-stone-900 font-bold">
-              Tuyệt Tác Bán Chạy
-            </h2>
-          </div>
-          <Link
-            href="/san-pham"
-            className="group text-primary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all"
-          >
-            XEM TẤT CẢ
-            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-              arrow_forward
+      {/* ─── Product Highlight (Featured Single Product) ─── */}
+      <section className="section-padding bg-[#f9f5ec]">
+        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" data-reveal>
+          <div className="reveal-up">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-[#2d4a3e]/60 mb-4 block font-semibold">
+              Nổi bật mùa này
             </span>
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {bestsellers.map((product, i) => (
-            <div
-              key={product.slug}
-              data-reveal
-              style={{ transitionDelay: `${i * 100}ms` }}
-              className="reveal-up"
-            >
-              <ProductCard product={product} />
-            </div>
-          ))}
+            <h2 className="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+              Hộp Quà <span className="italic font-light">Lộc Xuân</span>
+            </h2>
+            <p className="text-stone-500 text-base font-light leading-relaxed mb-8 max-w-lg">
+              Tinh hoa trà Ô Long Cổ Thụ, hạt điều rang củi Bình Phước, mứt sen Tây Hồ — gói trọn trong hộp
+              gỗ sơn mài thủ công mang đến cảm giác sang trọng và ý nghĩa trong từng món quà.
+            </p>
+            <Link href="/san-pham/hop-qua-loc-xuan" className="cocoon-btn-filled">
+              TÌM HIỂU THÊM
+            </Link>
+          </div>
+          <div className="relative aspect-square overflow-hidden reveal-scale">
+            <Image
+              src="/images/product-loc-xuan.jpg"
+              alt="Hộp Quà Lộc Xuân"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
-      {/* ─── Categories Showcase ─── */}
-      <section className="py-28 bg-stone-50/50 relative overflow-hidden border-y border-stone-200/50">
-        {/* Decorative */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
-        
-        {/* Subtle dot pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.4] pointer-events-none seasonal-motif"></div>
-
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
-          <div className="text-center mb-20" data-reveal>
-            <div className="reveal-up">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold mb-4">
-                ✦ Bộ sưu tập
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl text-stone-900 font-bold mb-6">
-                Phân Khúc Quà Tặng
-              </h2>
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-12 h-[2px] bg-outline-variant"></div>
-                <div className="w-8 h-[2px] bg-primary"></div>
-                <div className="w-12 h-[2px] bg-outline-variant"></div>
-              </div>
-            </div>
+      {/* ─── Brand Philosophy (Cocoon Style) ─── */}
+      <section className="relative h-[70vh] overflow-hidden">
+        <Image
+          src="/images/cat-hop-qua.jpg"
+          alt="Vietnamese Ingredients"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 flex items-center justify-center px-8">
+          <div data-reveal className="reveal-up bg-white/95 backdrop-blur-sm p-12 md:p-16 max-w-xl text-center">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-[#2d4a3e]/60 mb-4 block font-semibold">
+              Triết lý thương hiệu
+            </span>
+            <h3 className="text-3xl md:text-4xl font-serif mb-5 leading-snug">
+              Kết nối những <span className="italic">tâm hồn</span> qua giá trị thuần bản
+            </h3>
+            <p className="text-stone-500 text-sm font-light leading-relaxed mb-8">
+              Mỗi món quà không chỉ là một vật phẩm, mà là câu chuyện về lòng biết ơn
+              và sự trân trọng. Chúng tôi tỉ mỉ lựa chọn những tinh túy từ lòng đất mẹ,
+              được chế tác bởi bàn tay nghệ nhân tâm huyết nhất.
+            </p>
+            <Link href="/san-pham" className="cocoon-btn-filled">
+              TÌM HIỂU THÊM
+            </Link>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[300px]">
-            {/* Large Card */}
-            <div
-              data-reveal
-              className="reveal-scale md:col-span-8 md:row-span-2 group relative overflow-hidden rounded-xl shadow-lg cursor-pointer"
-            >
-              <Image
-                src="/images/cat-hop-qua.jpg"
-                alt="Hộp Quà Cao Cấp"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                sizes="(max-width: 768px) 100vw, 66vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-700"></div>
-              <div className="absolute bottom-10 left-10 text-white max-w-sm">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-secondary block mb-3">
-                  Premium Collection
+      {/* ─── Certifications / Values (3-column) ─── */}
+      <section className="section-padding bg-texture-dots relative overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#2d4a3e]/[0.015] rounded-full blur-3xl pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
+          <div data-reveal className="reveal-up text-center">
+            <div className="w-16 h-16 mx-auto mb-6 border border-stone-200 rounded-full flex items-center justify-center">
+              <span className="material-symbols-outlined text-2xl text-[#2d4a3e]">eco</span>
+            </div>
+            <h4 className="text-lg font-serif mb-3">Nguyên liệu Thuần Việt</h4>
+            <p className="text-stone-400 text-sm font-light leading-relaxed">
+              Tuyển chọn kĩ càng từ những vùng nguyên liệu trứ danh: Trà Thái Nguyên,
+              Hạt điều Bình Phước, Mứt sen Hà Nội.
+            </p>
+          </div>
+          <div data-reveal className="reveal-up text-center" style={{ transitionDelay: '100ms' }}>
+            <div className="w-16 h-16 mx-auto mb-6 border border-stone-200 rounded-full flex items-center justify-center">
+              <span className="material-symbols-outlined text-2xl text-[#2d4a3e]">palette</span>
+            </div>
+            <h4 className="text-lg font-serif mb-3">Thủ công Tinh xảo</h4>
+            <p className="text-stone-400 text-sm font-light leading-relaxed">
+              Hộp quà được chế tác từ gỗ sơn mài thủ công, trạm khắc tỉ mỉ
+              bởi các nghệ nhân lành nghề nhất.
+            </p>
+          </div>
+          <div data-reveal className="reveal-up text-center" style={{ transitionDelay: '200ms' }}>
+            <div className="w-16 h-16 mx-auto mb-6 border border-stone-200 rounded-full flex items-center justify-center">
+              <span className="material-symbols-outlined text-2xl text-[#2d4a3e]">design_services</span>
+            </div>
+            <h4 className="text-lg font-serif mb-3">Thiết kế Độc bản</h4>
+            <p className="text-stone-400 text-sm font-light leading-relaxed">
+              Đội ngũ designer tài năng sẽ hiện thực hóa mọi ý tưởng quà tặng,
+              mang đậm dấu ấn thương hiệu cá nhân.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Bestsellers (Horizontal Scroll with Sticky Left) ─── */}
+      <section className="section-padding bg-[#FAF8F3]">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
+            {/* Left Sticky Column */}
+            <div className="lg:sticky lg:top-32 lg:self-start" data-reveal>
+              <div className="reveal-left">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-[#2d4a3e]/60 mb-4 block font-semibold">
+                  Được yêu thích
                 </span>
-                <h3 className="font-serif text-3xl font-bold mb-3 group-hover:translate-x-1 transition-transform duration-500">
-                  Hộp Quà Cao Cấp
-                </h3>
-                <p className="mb-6 text-sm opacity-80 leading-relaxed">
-                  Sự lựa chọn hoàn hảo tôn vinh đẳng cấp cho đối tác và cấp
-                  trên trong dịp Tết này.
-                </p>
-                <Link
-                  href="/san-pham"
-                  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-colors rounded-sm group-hover:shadow-xl"
-                >
-                  Khám Phá
-                  <span className="material-symbols-outlined text-base">
-                    arrow_forward
-                  </span>
+                <h2 className="text-4xl font-serif leading-tight mb-6">
+                  Sản phẩm <br />
+                  <span className="italic font-light">Bán Chạy</span>
+                </h2>
+                <Link href="/san-pham" className="cocoon-btn text-sm">
+                  XEM TẤT CẢ
+                  <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </Link>
               </div>
             </div>
 
-            {/* Vertical Card */}
-            <div
-              data-reveal
-              style={{ transitionDelay: "150ms" }}
-              className="reveal-scale md:col-span-4 md:row-span-2 group relative overflow-hidden rounded-xl shadow-lg cursor-pointer"
-            >
-              <Image
-                src="/images/cat-gio-qua.jpg"
-                alt="Giỏ Quà Truyền Thống"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-700"></div>
-              <div className="absolute bottom-10 left-8 text-white right-8">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-secondary block mb-3">
-                  Traditional
-                </span>
-                <h3 className="font-serif text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform duration-500">
-                  Giỏ Quà Truyền Thống
-                </h3>
-                <p className="mb-4 text-xs opacity-80">
-                  Ấm áp tình thân, vẹn tròn phong vị.
-                </p>
-                <span className="text-xs font-bold uppercase tracking-widest border-b border-secondary text-secondary pb-1 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Xem chi tiết
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </span>
-              </div>
+            {/* Right - Product Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {bestsellers.map((product, i) => (
+                <div
+                  key={product.slug}
+                  data-reveal
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                  className="reveal-up"
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Bottom Cards */}
-            <div
-              data-reveal
-              style={{ transitionDelay: "100ms" }}
-              className="reveal-up md:col-span-6 group relative overflow-hidden rounded-xl shadow-lg h-[300px] cursor-pointer"
-            >
-              <Image
-                src="/images/cat-ruou-tra.jpg"
-                alt="Rượu Vang & Trà"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-700"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="font-serif text-2xl font-bold mb-4 group-hover:-translate-y-1 transition-transform duration-500">
-                  Rượu Vang & Trà
-                </h3>
-                <button className="px-6 py-2.5 border border-white/70 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-all cursor-pointer rounded-sm">
-                  Khám Phá
-                </button>
-              </div>
-            </div>
-            <div
-              data-reveal
-              style={{ transitionDelay: "200ms" }}
-              className="reveal-up md:col-span-6 group relative overflow-hidden rounded-xl shadow-lg h-[300px] cursor-pointer"
-            >
+      {/* ─── Ingredients Story (Cocoon Full-Width Image + Text) ─── */}
+      <section className="section-padding bg-leaf-pattern relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-20 items-center relative z-10">
+          <div className="order-2 md:order-1 img-zoom" data-reveal>
+            <div className="reveal-scale relative aspect-[4/5] overflow-hidden">
               <Image
                 src="/images/cat-doanh-nghiep.jpg"
-                alt="Quà Doanh Nghiệp"
+                alt="Corporate Gift Solutions"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-700"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="font-serif text-2xl font-bold mb-4 group-hover:-translate-y-1 transition-transform duration-500">
-                  Quà Doanh Nghiệp
-                </h3>
-                <button className="px-6 py-2.5 border border-white/70 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-all cursor-pointer rounded-sm">
-                  Xem Giải Pháp
-                </button>
-              </div>
+            </div>
+          </div>
+          <div className="order-1 md:order-2" data-reveal>
+            <div className="reveal-up">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-[#2d4a3e]/60 mb-6 block font-semibold">
+                Dành cho doanh nghiệp
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+                Giải pháp <br />
+                Quà tặng <span className="italic font-light">Chuyên Nghiệp.</span>
+              </h2>
+              <p className="text-stone-500 text-base font-light leading-relaxed mb-10 max-w-lg">
+                Chúng tôi hỗ trợ in Logo, tùy chỉnh bộ quà tặng theo màu sắc thương hiệu
+                và cung cấp dịch vụ giao hàng đến hàng ngàn đối tác chỉ trong một ngày.
+              </p>
+              <Link href="/collection/doanh-nghiep" className="cocoon-btn-filled">
+                XEM CHI TIẾT DỊCH VỤ
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Testimonial / Stats Ribbon ─── */}
-      <section className="py-20 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-4 right-12 rotate-12">
-            <span className="material-symbols-outlined text-[180px]">celebration</span>
-          </div>
-          <div className="absolute bottom-4 left-12 -rotate-12">
-            <span className="material-symbols-outlined text-[140px]">redeem</span>
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            {[
-              { number: "10K+", label: "Khách hàng tin tưởng" },
-              { number: "500+", label: "Mẫu quà tặng" },
-              { number: "98%", label: "Hài lòng dịch vụ" },
-              { number: "24h", label: "Giao hàng nhanh" },
-            ].map((stat, i) => (
-              <div
-                key={stat.label}
-                data-reveal
-                style={{ transitionDelay: `${i * 100}ms` }}
-                className="reveal-up"
-              >
-                <p className="text-4xl md:text-5xl font-serif font-bold mb-2 text-secondary">
-                  {stat.number}
-                </p>
-                <p className="text-sm text-white/70 uppercase tracking-wider">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+      {/* ─── Quote Section (Cocoon Style) ─── */}
+      <section className="quote-section">
+        <div className="max-w-3xl mx-auto px-8 text-center" data-reveal>
+          <div className="reveal-up">
+            <p className="text-2xl md:text-3xl font-serif italic leading-relaxed text-stone-700 mb-6">
+              &ldquo;Gift Glamorous – Nghệ thuật quà tặng cho nét đẹp thuần Việt&rdquo;
+            </p>
+            <span className="text-[11px] uppercase tracking-[0.3em] text-stone-400 font-medium">
+              — Elle Vietnam
+            </span>
           </div>
         </div>
       </section>
 
-      {/* ─── Newsletter / CTA ─── */}
-      <section className="max-w-7xl mx-auto px-8 my-28">
-        <div
-          data-reveal
-          className="reveal-scale bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 rounded-2xl p-16 md:p-20 text-center text-white relative overflow-hidden shadow-2xl"
-        >
-          {/* Decorative elements */}
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-6 right-12 w-32 h-32 border border-white/5 rounded-full"></div>
-            <div className="absolute bottom-6 left-12 w-48 h-48 border border-white/5 rounded-full"></div>
-            <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-secondary/30 rounded-full"></div>
-            <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-secondary/20 rounded-full"></div>
-          </div>
-
-          <div className="relative z-10">
-            <span className="inline-block text-xs uppercase tracking-[0.4em] text-secondary font-semibold mb-6">
-              ✦ Ưu đãi đặc biệt ✦
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Nhận Ưu Đãi <br className="hidden md:block" />
-              <span className="bg-gradient-to-r from-secondary via-yellow-200 to-secondary bg-clip-text text-transparent">
-                Tết Sớm
-              </span>
-            </h2>
-            <p className="max-w-xl mx-auto mb-12 text-white/60 font-light text-lg leading-relaxed">
-              Để lại email để nhận danh mục quà tặng doanh nghiệp chiết khấu
-              tới 20% và đặc quyền vận chuyển miễn phí.
+      {/* ─── Newsletter Section ─── */}
+      <section className="section-padding bg-botanical-overlay bg-[#faf8f3] relative overflow-hidden">
+        <div className="max-w-xl mx-auto px-8 text-center relative z-10" data-reveal>
+          <div className="reveal-up">
+            <h2 className="text-2xl font-serif mb-3 italic">Trở thành một phần của chúng tôi</h2>
+            <p className="text-stone-400 text-sm font-light mb-10">
+              Nhận thông tin về sản phẩm mới và những ưu đãi độc quyền dành riêng cho bạn.
             </p>
-            <form className="flex flex-col md:flex-row gap-0 max-w-lg mx-auto rounded-lg overflow-hidden shadow-2xl shadow-black/30">
+            <form className="flex border-b border-stone-300 max-w-md mx-auto">
               <input
-                className="flex-1 bg-white border-none focus:ring-0 text-stone-900 px-6 py-4 outline-none placeholder:text-stone-400 text-sm"
-                placeholder="Nhập email của bạn..."
+                className="flex-1 bg-transparent py-3 text-sm outline-none placeholder:text-stone-400 font-light"
+                placeholder="Nhập địa chỉ email của bạn..."
                 type="email"
               />
               <button
                 type="submit"
-                className="bg-primary hover:bg-primary-container text-white px-10 py-4 font-bold uppercase tracking-widest transition-all cursor-pointer text-sm"
+                className="px-4 text-stone-500 hover:text-[#2d4a3e] transition-colors"
               >
-                Đăng Ký
+                <span className="material-symbols-outlined">arrow_forward</span>
               </button>
             </form>
           </div>
         </div>
       </section>
+
+      {/* ─── Contact Float Button ─── */}
+      <div className="fixed bottom-6 right-6 z-40">
+        <button className="bg-white border border-stone-200 shadow-lg px-5 py-3 text-sm font-medium text-stone-700 hover:border-[#2d4a3e] hover:text-[#2d4a3e] transition-all flex items-center gap-2 rounded-full">
+          Liên hệ
+        </button>
+      </div>
     </main>
   );
 }

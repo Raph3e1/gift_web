@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* === Primary (Imperial Red) === */
-  --color-primary: #a30014;
-  --color-primary-container: #c92127;
-  --color-primary-dark: #7a000f;
+  /* === Primary (Earthy Dark Green - Cocoon Style) === */
+  --color-primary: #2d4a3e;
+  --color-primary-container: #3d5e4f;
+  --color-primary-dark: #1e3329;
   --color-on-primary: #ffffff;
-  --color-on-primary-container: #fff2f0;
-  --color-primary-fixed: #ffdad6;
-  --color-primary-fixed-dim: #ffb3ac;
-  --color-inverse-primary: #ffb3ac;
+  --color-on-primary-container: #e8f5e9;
+  --color-primary-fixed: #c8e6c9;
+  --color-primary-fixed-dim: #a5d6a7;
+  --color-inverse-primary: #a5d6a7;
 
-  /* === Secondary (Gold) === */
-  --color-secondary: #fed65b;
-  --color-secondary-container: #fed65b;
+  /* === Secondary (Warm Gold / Mustard - Cocoon Accent) === */
+  --color-secondary: #c9a55c;
+  --color-secondary-container: #e6c887;
   --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #6e5c00;
-  --color-secondary-fixed: #ffe16d;
-  --color-secondary-fixed-dim: #e9c400;
+  --color-on-secondary-container: #4a3b1a;
+  --color-secondary-fixed: #ffdf9c;
+  --color-secondary-fixed-dim: #e4c379;
 
-  /* === Tertiary === */
+  /* === Tertiary (Warm Brown) === */
   --color-tertiary: #6d5147;
   --color-tertiary-container: #87695e;
   --color-on-tertiary: #ffffff;
@@ -27,33 +27,39 @@
   --color-tertiary-fixed: #ffdbce;
   --color-tertiary-fixed-dim: #e4beb2;
 
-  /* === Neutral & Surface === */
-  --color-background: #fbf9f5;
-  --color-surface: #fbf9f5;
-  --color-surface-bright: #fbf9f5;
-  --color-surface-dim: #dbdad6;
-  --color-surface-container: #efeeea;
-  --color-surface-container-low: #f5f3ef;
-  --color-surface-container-high: #eae8e4;
-  --color-surface-container-highest: #e4e2de;
+  /* === Neutral & Surface (Cream/Warm White) === */
+  --color-background: #faf8f3;
+  --color-surface: #faf8f3;
+  --color-surface-bright: #faf8f3;
+  --color-surface-dim: #e8e5de;
+  --color-surface-container: #f3f0e8;
+  --color-surface-container-low: #f7f4ed;
+  --color-surface-container-high: #edeae3;
+  --color-surface-container-highest: #e7e4dd;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-variant: #e4e2de;
-  --color-surface-tint: #c92127;
-  --color-on-surface: #1b1c1a;
-  --color-on-surface-variant: #5b403d;
-  --color-on-background: #1b1c1a;
-  --color-inverse-surface: #30312e;
+  --color-surface-variant: #e7e4dd;
+  --color-surface-tint: #2d4a3e;
+  --color-on-surface: #1a1c1a;
+  --color-on-surface-variant: #44483e;
+  --color-on-background: #1a1c1a;
+  --color-inverse-surface: #2f312e;
   --color-inverse-on-surface: #f2f0ed;
 
   /* === Outline === */
-  --color-outline: #8f6f6c;
-  --color-outline-variant: #e4beba;
+  --color-outline: #74796e;
+  --color-outline-variant: #c4c8bb;
 
   /* === Error === */
   --color-error: #ba1a1a;
   --color-error-container: #ffdad6;
   --color-on-error: #ffffff;
   --color-on-error-container: #93000a;
+
+  /* === Mustard / Hero Accent === */
+  --color-mustard: #e8c547;
+  --color-mustard-bg: #f0d96b;
+  --color-cream: #f9f5ec;
+  --color-dark-green: #2d4a3e;
 
   /* === Border Radius === */
   --radius-sm: 0.125rem;
@@ -69,24 +75,18 @@
   --font-label: "Inter", sans-serif;
 
   /* === Ambient Shadow === */
-  --shadow-ambient: 0px 12px 32px rgba(92, 64, 61, 0.08);
+  --shadow-ambient: 0px 8px 24px rgba(45, 74, 62, 0.06);
 }
 
 /* === Base === */
 body {
   font-family: var(--font-body);
-  background-color: #faf8f4;
+  background-color: #faf8f3;
   color: var(--color-on-surface);
 }
 
-/* Warm textured page background */
 main {
-  background:
-    radial-gradient(ellipse 600px 400px at 10% 20%, rgba(163, 0, 20, 0.03), transparent),
-    radial-gradient(ellipse 500px 500px at 90% 60%, rgba(254, 214, 91, 0.04), transparent),
-    radial-gradient(ellipse 400px 300px at 50% 80%, rgba(163, 0, 20, 0.02), transparent),
-    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='0.8' fill='%23c92127' fill-opacity='0.04'/%3E%3C/svg%3E");
-  background-attachment: fixed;
+  background: #faf8f3;
 }
 
 ::selection {
@@ -98,48 +98,241 @@ main {
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
 }
 
-/* === Custom Utilities === */
-.hero-gradient {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("/images/hero-bg.jpg");
-  background-size: cover;
+/* === Announcement Bar === */
+.announcement-bar {
+  background-color: #2d4a3e;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* === Cocoon-style Navbar === */
+.cocoon-nav {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cocoon-nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #333;
+  transition: color 0.3s;
+  position: relative;
+  padding: 8px 0;
+}
+
+.cocoon-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: #2d4a3e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.cocoon-nav-link:hover {
+  color: #2d4a3e;
+}
+
+.cocoon-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* === Marquee (Announcement Running Text) === */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #2d4a3e;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 0;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 35s linear infinite;
+  padding-left: 100%;
+}
+
+.marquee-item {
+  display: inline-block;
+  padding: 0 50px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+/* === Hero Section (Cocoon 50/50 Split) === */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 85vh;
+}
+
+@media (max-width: 768px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+.hero-mustard {
+  background-color: #f0d96b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+}
+
+@media (max-width: 1024px) {
+  .hero-mustard {
+    padding: 40px 32px;
+  }
+}
+
+/* === Section Spacing === */
+.section-full {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.section-padding {
+  padding: 100px 0;
+}
+
+.section-padding-sm {
+  padding: 60px 0;
+}
+
+/* === Decorative Backgrounds === */
+.bg-leaf-pattern {
+  background-color: #ffffff;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,30 Q50,5 80,30 Q110,60 80,90 Q50,115 30,90 Q5,60 30,30 Z' fill='%232d4a3e' fill-opacity='0.02' transform='rotate(45 60 60)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+.bg-texture-dots {
+  background-color: #ffffff;
+  background-image: radial-gradient(circle at 2px 2px, rgba(45, 74, 62, 0.04) 2px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.bg-botanical-overlay {
+  position: relative;
+}
+.bg-botanical-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40,10 C50,20 60,40 40,70 C20,40 30,20 40,10 Z' fill='%23e8c547' fill-opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
   background-position: center;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-.seasonal-motif {
-  background-image: radial-gradient(
-    circle at 2px 2px,
-    rgba(201, 33, 39, 0.03) 1px,
-    transparent 0
-  );
-  background-size: 60px 60px;
+
+/* === Product Card (Cocoon Minimal) === */
+.cocoon-product-card {
+  background: #f5f3ed;
+  padding: 24px;
+  transition: all 0.4s ease;
+  position: relative;
 }
 
-.tet-watermark {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10C55 25 75 25 75 50C75 75 55 75 50 90C45 75 25 75 25 50C25 25 45 25 50 10Z' fill='%23c92127' fill-opacity='0.02'/%3E%3C/svg%3E");
+.cocoon-product-card:hover {
+  background: #efece4;
 }
 
-.serif-display {
-  font-family: var(--font-headline);
-  letter-spacing: -0.02em;
+.cocoon-product-card .cart-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  background: #2d4a3e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
 }
 
-.glass-nav {
-  backdrop-filter: blur(20px);
+.cocoon-product-card:hover .cart-btn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* === Ghost Border === */
-.ghost-border {
-  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 15%, transparent);
+/* === Scroll Reveal System === */
+.reveal-up,
+.reveal-left,
+.reveal-scale {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* === Signature Gradient (Primary CTA) === */
-.signature-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-container)
-  );
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.revealed .reveal-up,
+.revealed .reveal-left,
+.revealed .reveal-scale,
+.reveal-up.revealed,
+.reveal-left.revealed,
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* === Hero Stagger Entrance === */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-stagger-1 { animation-delay: 0.15s; }
+.hero-stagger-2 { animation-delay: 0.3s; }
+.hero-stagger-3 { animation-delay: 0.45s; }
+.hero-stagger-4 { animation-delay: 0.6s; }
+.hero-stagger-5 { animation-delay: 0.75s; }
+
+@keyframes hero-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* === Animations === */
@@ -189,113 +382,121 @@ main {
   animation: badge-pop 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-/* === Scroll Reveal System === */
-.reveal-up,
-.reveal-left,
-.reveal-scale {
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* === CTA Button (Cocoon Style) === */
+.cocoon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 32px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1.5px solid #333;
+  background: transparent;
+  color: #333;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.reveal-up {
-  opacity: 0;
-  transform: translateY(40px);
+.cocoon-btn:hover {
+  background: #2d4a3e;
+  border-color: #2d4a3e;
+  color: white;
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
+.cocoon-btn-filled {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: #2d4a3e;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.92);
+.cocoon-btn-filled:hover {
+  background: #1e3329;
 }
 
-.revealed .reveal-up,
-.revealed .reveal-left,
-.revealed .reveal-scale,
-.reveal-up.revealed,
-.reveal-left.revealed,
-.reveal-scale.revealed {
-  opacity: 1;
-  transform: translateY(0) translateX(0) scale(1);
+/* === Quote Section === */
+.quote-section {
+  background: #f9f5ec;
+  padding: 80px 0;
+  text-align: center;
 }
 
-/* === Hero Stagger Entrance === */
-.hero-stagger {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: hero-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.hero-stagger-1 { animation-delay: 0.2s; }
-.hero-stagger-2 { animation-delay: 0.4s; }
-.hero-stagger-3 { animation-delay: 0.6s; }
-.hero-stagger-4 { animation-delay: 0.8s; }
-
-@keyframes hero-enter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* === Dropdown Menus === */
+.nav-item {
+  @apply relative py-4 cursor-pointer flex items-center gap-1;
 }
 
-/* === Hero Parallax === */
-.hero-parallax {
-  animation: hero-zoom 25s ease-in-out infinite alternate;
+.nav-dropdown {
+  @apply absolute top-[calc(100%-4px)] left-0 w-60 bg-white/98 backdrop-blur-xl border border-stone-200/50 shadow-xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-300 z-50 p-1.5;
 }
 
-@keyframes hero-zoom {
-  from { transform: scale(1.1) translateY(0); }
-  to { transform: scale(1.15) translateY(-15px); }
+.nav-item:hover .nav-dropdown {
+  @apply opacity-100 visible translate-y-0;
 }
 
-/* === Hero Floating Particles === */
-.hero-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(254, 214, 91, 0.4), transparent 70%);
-  pointer-events: none;
-  animation: particle-float linear infinite;
+.nav-dropdown-item {
+  @apply px-4 py-2.5 text-[13px] text-stone-600 hover:bg-stone-50 hover:text-primary transition-all duration-200 flex items-center justify-between;
 }
 
-.hero-particle-1 {
-  width: 6px; height: 6px;
-  top: 20%; left: 15%;
-  animation-duration: 8s;
-}
-.hero-particle-2 {
-  width: 4px; height: 4px;
-  top: 60%; left: 70%;
-  animation-duration: 12s;
-  animation-delay: -3s;
-}
-.hero-particle-3 {
-  width: 5px; height: 5px;
-  top: 30%; left: 80%;
-  animation-duration: 10s;
-  animation-delay: -5s;
-}
-.hero-particle-4 {
-  width: 3px; height: 3px;
-  top: 75%; left: 25%;
-  animation-duration: 14s;
-  animation-delay: -7s;
+.nav-dropdown-item span.icon {
+  @apply opacity-0 -translate-x-2 transition-all duration-300 text-xs;
 }
 
-@keyframes particle-float {
-  0%   { transform: translateY(0) translateX(0); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(-120px) translateX(40px); opacity: 0; }
+.nav-dropdown-item:hover span.icon {
+  @apply opacity-100 translate-x-0;
 }
 
-/* === Slow Bounce (scroll indicator) === */
-.animate-bounce-slow {
-  animation: bounce-slow 2.5s ease-in-out infinite;
+/* === Text Utilities === */
+.text-justify-vignette {
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  font-weight: 300;
 }
 
-@keyframes bounce-slow {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-8px); }
+/* === Ghost Border === */
+.ghost-border {
+  border: 1px solid color-mix(in srgb, var(--color-outline-variant) 15%, transparent);
+}
+
+/* === Bestseller Horizontal Scroll === */
+.bestseller-scroll {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bestseller-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.bestseller-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* === Smooth Image Hover === */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
 }

@@ -21,17 +21,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Gift Glamorous - Quà Tết Cao Cấp",
+  title: "Gift Glamorous - Bộ Sưu Tập Quà Tặng Cao Cấp",
   description:
-    "Khám phá bộ sưu tập quà Tết Heirloom — sự kết tinh giữa nghệ thuật thủ công truyền thống và phong cách đương đại thượng lưu. Gói trọn nghĩa tình, khai xuân như ý.",
+    "Khám phá thế giới quà tặng nghệ thuật tại Gift Glamorous — sự kết tinh giữa tinh hoa truyền thống và phong cách đương đại. Quà tặng cho mọi dịp quan trọng, đối tác doanh nghiệp và người thân yêu.",
   keywords: [
-    "quà tết",
     "quà tặng cao cấp",
-    "hộp quà tết",
+    "quà tết",
+    "quà valentine",
+    "quà trung thu",
+    "quà giáng sinh",
     "quà doanh nghiệp",
     "gift glamorous",
   ],
 };
+
 
 export default function RootLayout({
   children,
